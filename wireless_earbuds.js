@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Product Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .product-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 400px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .product-content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .product-description {
+            flex: 1;
+        }
+
+        .product-description h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .product-description p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 2em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 20px 0;
+        }
+
+        .buy-section {
+            min-width: 200px;
+        }
+
+        .buy-now-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(238, 90, 82, 0.4);
+        }
+
+        .buy-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(238, 90, 82, 0.6);
+        }
+
+        .order-form {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-top: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .address-type {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .address-option {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .address-option.selected {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .address-option:hover {
+            border-color: #667eea;
+        }
+
+        .order-btn {
+            background: linear-gradient(45deg, #51cf66, #40c057);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(64, 192, 87, 0.4);
+        }
+
+        .order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(64, 192, 87, 0.6);
+        }
+
+        .success-message {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .success-message h3 {
+            color: #51cf66;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .payment-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .payment-info h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .payment-details {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .reference-code {
+            background: #667eea;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .product-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .product-content {
+                padding: 20px;
+            }
+            
+            .order-form {
+                padding: 20px;
+            }
+            
+            .address-type {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ATOMIC SHOP</h1>
+        </div>
+
+        <div class="product-section">
+            <div class="product-image">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjhGOUZBIi8+CjxyZWN0IHg9IjEwMCIgeT0iNzUiIHdpZHRoPSIyMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRTFFOEVEIiBzdHJva2U9IiNEMUQ5RTAiIHN0cm9rZS13aWR0aD0iMiIgcng9IjEwIi8+CjxjaXJjbGUgY3g9IjIwMCIgY3k9IjE1MCIgcj0iNDAiIGZpbGw9IiM2NjdFRUEiLz4KPHRLEHT+CiAgICA8dHNwYW4geD0iMjAwIiB5PSIxNTUiIGZpbGw9IndoaXRlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5QUk9EVUNUPC90c3Bhbj4KICA8L3RleHQ+Cjwvc3ZnPgo=" alt="Product Image" />
+            </div>
+            <div class="product-content">
+                <div class="product-description">
+                    <h2>🔰 Premium Wireless Earbuds – মাত্র ৫৫০ টাকা! 🔰</h2>
+                    <div class="price">৳550</div>
+                    <p>🔎 নির্ভরযোগ্য এবং প্রিমিয়াম কোয়ালিটির ∆Wireless Earbuds∆ খুঁজছেন? এই প্রিমিয়াম Wireless Earbuds আপনার জন্য!</p>
+                    
+                    <p>💠এই ∆Wireless Earbuds∆ এর Case টি durable এবং এতে একটি প্রিমিয়াম লুক রয়েছে। Earbuds কেসেরও বিল্ড কোয়ালিটি প্রিমিয়াম কোয়ালিটির এবং এর সাউন্ড কোয়ালিটিও চমৎকার যা এটিকে আরও প্রিমিয়াম করে তোলে। Earbuds-টি কানে আরামদায়ক ও হালকা অনুভূত হয়। কেসে বিল্ট-ইন 2000 mAh ব্যাটারি রয়েছে।</p>
+
+                    <hr style="margin: 20px 0; border: none; border-top: 2px solid #eee;">
+
+                    <p><strong>💳 পেমেন্ট পদ্ধতি: bKash 🔰<br>
+                    🔷 ডেলিভারির আগে ৳২৫০ অগ্রিম প্রযোজ্য</strong></p>
+
+                    <hr style="margin: 20px 0; border: none; border-top: 2px solid #eee;">
+
+                    <p><strong>⚙️ Technical Specs:</strong></p>
+                    <p>🔹Bluetooth Version: ➖ 5.1<br>
+                    🔹Earbud Battery: ➖ 50 mAh each<br>
+                    🔹Case Battery: ➖ 2000 mAh<br>
+                    🔹Play Time: ➖ 2 - 4 hours per earbud<br>
+                    🔹Charging Time: ➖ Earbuds 1 - 2 hours , Case 2 - 3 hours<br>
+                    🔹Wireless Range: ➖ 5 - 12 m (without walls or objects blocking)<br>
+                    🔹Operation Mode: ➖ Touch Control<br>
+                    🔹Automatic Connect: ➖ Supported<br>
+                    🔹Automatic Boot Up: ➖ Supported</p>
+
+                    <hr style="margin: 20px 0; border: none; border-top: 2px solid #eee;">
+
+                    <p><strong>🎮 Controls:</strong><br>
+                    ♦️Play/Pause:➖ Light touch the left earphone once<br>
+                    ♦️Answer/Hang up:➖ Light touch the left earphone once<br>
+                    ♦️Volume Reduction:➖ Light touch the left earphone triple in a row<br>
+                    ♦️Switch The Previous Song:➖ Light touch the left earphone 2 seconds<br>
+                    ♦️Turn On/Off:➖ Long press the earphone for 5 seconds</p>
+                </div>
+                <div class="buy-section">
+                    <button class="buy-now-btn" onclick="showOrderForm()">
+                        🛒 BUY NOW
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-form" id="orderForm">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Complete Your Order</h2>
+            <form id="orderFormData">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="province">Province / Region</label>
+                    <select id="province" name="province" required>
+                        <option value="">Select Province/Region</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Barisal">Barisal</option>
+                        <option value="Sylhet">Sylhet</option>
+                        <option value="Rangpur">Rangpur</option>
+                        <option value="Mymensingh">Mymensingh</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <select id="city" name="city" required>
+                        <option value="">Select City</option>
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Comilla">Comilla</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Barisal">Barisal</option>
+                        <option value="Sylhet">Sylhet</option>
+                        <option value="Rangpur">Rangpur</option>
+                        <option value="Mymensingh">Mymensingh</option>
+                        <option value="Narayanganj">Narayanganj</option>
+                        <option value="Gazipur">Gazipur</option>
+                        <option value="Bogra">Bogra</option>
+                        <option value="Jessore">Jessore</option>
+                        <option value="Dinajpur">Dinajpur</option>
+                        <option value="Kushtia">Kushtia</option>
+                        <option value="Pabna">Pabna</option>
+                        <option value="Faridpur">Faridpur</option>
+                        <option value="Tangail">Tangail</option>
+                        <option value="Manikganj">Manikganj</option>
+                        <option value="Noakhali">Noakhali</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="zone">Zone</label>
+                    <select id="zone" name="zone" required>
+                        <option value="">Select Zone</option>
+                        <option value="Dhanmondi">Dhanmondi</option>
+                        <option value="Gulshan">Gulshan</option>
+                        <option value="Banani">Banani</option>
+                        <option value="Uttara">Uttara</option>
+                        <option value="Mirpur">Mirpur</option>
+                        <option value="Mohammadpur">Mohammadpur</option>
+                        <option value="Old Dhaka">Old Dhaka</option>
+                        <option value="Wari">Wari</option>
+                        <option value="Ramna">Ramna</option>
+                        <option value="Tejgaon">Tejgaon</option>
+                        <option value="Pallabi">Pallabi</option>
+                        <option value="Shah Ali">Shah Ali</option>
+                        <option value="Badda">Badda</option>
+                        <option value="Rampura">Rampura</option>
+                        <option value="Motijheel">Motijheel</option>
+                        <option value="Lalbagh">Lalbagh</option>
+                        <option value="Kotwali">Kotwali</option>
+                        <option value="Sutrapur">Sutrapur</option>
+                        <option value="Sabujbagh">Sabujbagh</option>
+                        <option value="Demra">Demra</option>
+                        <option value="Shyampur">Shyampur</option>
+                        <option value="Dakshinkhan">Dakshinkhan</option>
+                        <option value="Turag">Turag</option>
+                        <option value="Savar">Savar</option>
+                        <option value="Keraniganj">Keraniganj</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="landmark">Landmark (Optional)</label>
+                    <input type="text" id="landmark" name="landmark">
+                </div>
+
+                <div class="form-group">
+                    <label>Select a label for effective delivery:</label>
+                    <div class="address-type">
+                        <div class="address-option" onclick="selectAddressType('office')">
+                            🏢 OFFICE
+                        </div>
+                        <div class="address-option" onclick="selectAddressType('home')">
+                            🏠 HOME
+                        </div>
+                    </div>
+                    <input type="hidden" id="addressType" name="addressType" required>
+                </div>
+
+                <button type="submit" class="order-btn">📋 PLACE ORDER</button>
+            </form>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            <h3>✅ Order Placed Successfully!</h3>
+            <p>Thank you for your order. Please complete the payment to confirm your order.</p>
+            <div class="payment-info">
+                <h4><strong>Pre-delivery fee required</strong></h4>
+                <div class="payment-details">
+                    <p><strong>bKash number:</strong> 01784638636</p>
+                    <p><strong>Amount:</strong> 99 tk</p>
+                    <p><strong>Reference code:</strong> <span class="reference-code" id="referenceCode"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedAddressType = '';
+
+        function showOrderForm() {
+            document.getElementById('orderForm').style.display = 'block';
+            document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectAddressType(type) {
+            selectedAddressType = type;
+            document.getElementById('addressType').value = type;
+            
+            // Remove selected class from all options
+            document.querySelectorAll('.address-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            event.target.classList.add('selected');
+        }
+
+        function generateReferenceCode() {
+            return Math.floor(100000 + Math.random() * 900000).toString();
+        }
+
+        async function sendToDiscord(orderData, referenceCode) {
+            const webhookUrl = 'https://discord.com/api/webhooks/1401663924960493579/vqmlaEifzPJHmvLgqYF3YbEweuaJ2cJNy3JjC81dMJpAf732H8eVuzOpMI93t_LpIVns';
+            
+            const embed = {
+                title: "🛒 New Order Received",
+                color: 0x667eea,
+                fields: [
+                    {
+                        name: "👤 Customer Details",
+                        value: `**Name:** ${orderData.fullName}\n**Phone:** ${orderData.phoneNumber}`,
+                        inline: false
+                    },
+                    {
+                        name: "📍 Delivery Address",
+                        value: `**Province:** ${orderData.province}\n**City:** ${orderData.city}\n**Zone:** ${orderData.zone}\n**Address:** ${orderData.address}\n**Landmark:** ${orderData.landmark || 'Not provided'}\n**Type:** ${orderData.addressType.toUpperCase()}`,
+                        inline: false
+                    },
+                    {
+                        name: "💰 Payment Info",
+                        value: `**Reference Code:** ${referenceCode}\n**Amount:** 99 TK\n**bKash:** 01784638636`,
+                        inline: false
+                    }
+                ],
+                timestamp: new Date().toISOString(),
+                footer: {
+                    text: "Order Management System"
+                }
+            };
+
+            const payload = {
+                embeds: [embed]
+            };
+
+            try {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+            } catch (error) {
+                console.error('Error sending to Discord:', error);
+            }
+        }
+
+        document.getElementById('orderFormData').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!selectedAddressType) {
+                alert('Please select a delivery type (Office or Home)');
+                return;
+            }
+
+            const formData = new FormData(this);
+            const orderData = Object.fromEntries(formData.entries());
+            
+            // Generate reference code
+            const referenceCode = generateReferenceCode();
+            
+            // Send to Discord
+            await sendToDisc
