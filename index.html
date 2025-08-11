@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATOMIC SHOP - Premium Wireless Earbuds</title>
+    <title>ATOMIC SHOP</title>
     <style>
         * {
             margin: 0;
@@ -166,6 +166,12 @@
             border-color: #667eea;
         }
 
+        .form-group select:disabled {
+            background-color: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+        }
+
         .address-type {
             display: flex;
             gap: 20px;
@@ -300,17 +306,11 @@
                     <div class="price">৳550</div>
                     
                     <hr style="margin: 20px 0; border: none; border-top: 2px solid #eee; position: relative;">
-                    <div style="background: white; display: inline-block; padding: 0 15px; position: relative; top: -12px; color: #666; font-weight: bold;">Description</div>
+                    <div style="background: white; display: inline-block; padding: 0 5px; position: relative; top: -12px; color: #666; font-weight: bold; font-size: 1.2em;"><strong>Description</strong></div>
                     
-                    <p>🔰 Premium Wireless Earbuds – মাত্র ৫৫০ টাকা! 🔰</p>
-                    <p>🔎 নির্ভরযোগ্য এবং প্রিমিয়াম কোয়ালিটির ∆Wireless Earbuds∆ খুঁজছেন? এই প্রিমিয়াম Wireless Earbuds আপনার জন্য!</p>
+                    <p>নির্ভরযোগ্য এবং প্রিমিয়াম কোয়ালিটির ∆Wireless Earbuds∆ খুঁজছেন? এই প্রিমিয়াম Wireless Earbuds আপনার জন্য!</p>
                     
-                    <p>💠এই ∆Wireless Earbuds∆ এর Case টি durable এবং এতে একটি প্রিমিয়াম লুক রয়েছে। Earbuds কেসেরও বিল্ড কোয়ালিটি প্রিমিয়াম কোয়ালিটির এবং এর সাউন্ড কোয়ালিটিও চমৎকার যা এটিকে আরও প্রিমিয়াম করে তোলে। Earbuds-টি কানে আরামদায়ক ও হালকা অনুভূত হয়। কেসে বিল্ট-ইন 2000 mAh ব্যাটারি রয়েছে।</p>
-
-                    <hr style="margin: 20px 0; border: none; border-top: 2px solid #eee;">
-
-                    <p><strong>💳 পেমেন্ট পদ্ধতি: bKash 🔰<br>
-                    🔷 ডেলিভারির আগে ৳২৫০ অগ্রিম প্রযোজ্য</strong></p>
+                    <p>এই ∆Wireless Earbuds∆ এর Case টি durable এবং এতে একটি প্রিমিয়াম লুক রয়েছে। Earbuds কেসেরও বিল্ড কোয়ালিটি প্রিমিয়াম কোয়ালিটির এবং এর সাউন্ড কোয়ালিটিও চমৎকার যা এটিকে আরও প্রিমিয়াম করে তোলে। Earbuds-টি কানে আরামদায়ক ও হালকা অনুভূত হয়। কেসে বিল্ট-ইন 2000 mAh ব্যাটারি রয়েছে।</p>
 
                     <hr style="margin: 20px 0; border: none; border-top: 2px solid #eee;">
 
@@ -339,7 +339,7 @@
                 </div>
                 <div class="buy-section">
                     <button class="buy-now-btn" onclick="showOrderForm()">
-                        🛒 BUY NOW
+                        BUY NOW
                     </button>
                 </div>
             </div>
@@ -362,84 +362,34 @@
                     <label for="province">Province / Region</label>
                     <select id="province" name="province" required>
                         <option value="">Select Province/Region</option>
+                        <option value="Barishal">Barishal</option>
+                        <option value="Chattogram">Chattogram</option>
                         <option value="Dhaka">Dhaka</option>
-                        <option value="Chittagong">Chittagong</option>
-                        <option value="Rajshahi">Rajshahi</option>
                         <option value="Khulna">Khulna</option>
-                        <option value="Barisal">Barisal</option>
-                        <option value="Sylhet">Sylhet</option>
-                        <option value="Rangpur">Rangpur</option>
                         <option value="Mymensingh">Mymensingh</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                        <option value="Rangpur">Rangpur</option>
+                        <option value="Sylhet">Sylhet</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="city">City</label>
-                    <select id="city" name="city" required>
+                    <select id="city" name="city" required disabled>
                         <option value="">Select City</option>
-                        <option value="Dhaka">Dhaka</option>
-                        <option value="Chittagong">Chittagong</option>
-                        <option value="Comilla">Comilla</option>
-                        <option value="Rajshahi">Rajshahi</option>
-                        <option value="Khulna">Khulna</option>
-                        <option value="Barisal">Barisal</option>
-                        <option value="Sylhet">Sylhet</option>
-                        <option value="Rangpur">Rangpur</option>
-                        <option value="Mymensingh">Mymensingh</option>
-                        <option value="Narayanganj">Narayanganj</option>
-                        <option value="Gazipur">Gazipur</option>
-                        <option value="Bogra">Bogra</option>
-                        <option value="Jessore">Jessore</option>
-                        <option value="Dinajpur">Dinajpur</option>
-                        <option value="Kushtia">Kushtia</option>
-                        <option value="Pabna">Pabna</option>
-                        <option value="Faridpur">Faridpur</option>
-                        <option value="Tangail">Tangail</option>
-                        <option value="Manikganj">Manikganj</option>
-                        <option value="Noakhali">Noakhali</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="zone">Zone</label>
-                    <select id="zone" name="zone" required>
+                    <select id="zone" name="zone" required disabled>
                         <option value="">Select Zone</option>
-                        <option value="Dhanmondi">Dhanmondi</option>
-                        <option value="Gulshan">Gulshan</option>
-                        <option value="Banani">Banani</option>
-                        <option value="Uttara">Uttara</option>
-                        <option value="Mirpur">Mirpur</option>
-                        <option value="Mohammadpur">Mohammadpur</option>
-                        <option value="Old Dhaka">Old Dhaka</option>
-                        <option value="Wari">Wari</option>
-                        <option value="Ramna">Ramna</option>
-                        <option value="Tejgaon">Tejgaon</option>
-                        <option value="Pallabi">Pallabi</option>
-                        <option value="Shah Ali">Shah Ali</option>
-                        <option value="Badda">Badda</option>
-                        <option value="Rampura">Rampura</option>
-                        <option value="Motijheel">Motijheel</option>
-                        <option value="Lalbagh">Lalbagh</option>
-                        <option value="Kotwali">Kotwali</option>
-                        <option value="Sutrapur">Sutrapur</option>
-                        <option value="Sabujbagh">Sabujbagh</option>
-                        <option value="Demra">Demra</option>
-                        <option value="Shyampur">Shyampur</option>
-                        <option value="Dakshinkhan">Dakshinkhan</option>
-                        <option value="Turag">Turag</option>
-                        <option value="Savar">Savar</option>
-                        <option value="Keraniganj">Keraniganj</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="address">Address</label>
                     <input type="text" id="address" name="address" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="landmark">Landmark (Optional)</label>
-                    <input type="text" id="landmark" name="landmark">
                 </div>
 
                 <div class="form-group">
@@ -455,7 +405,7 @@
                     <input type="hidden" id="addressType" name="addressType" required>
                 </div>
 
-                <button type="submit" class="order-btn">📋 PLACE ORDER</button>
+                <button type="submit" class="order-btn">PLACE ORDER</button>
             </form>
         </div>
 
@@ -464,6 +414,9 @@
             <p>Thank you for your order. Please complete the payment to confirm your order.</p>
             <div class="payment-info">
                 <h4><strong>Pre-delivery fee required</strong></h4>
+                <div style="text-align: center; margin: 15px 0;">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQwIiB2aWV3Qm94PSIwIDAgMTIwIDQwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQwIiByeD0iOCIgZmlsbD0iI0U2MjQzNyIvPgo8dGV4dD4KICA8dHNwYW4geD0iNjAiIHk9IjE2IiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TW9iaWxlIEZpbmFuY2lhbCBTZXJ2aWNlPC90c3Bhbj4KICA8dHNwYW4geD0iNjAiIHk9IjMwIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+YktBU0g8L3RzcGFuPgogIDwvdGV4dD4KPC9zdmc+Cg==" alt="bKash Logo" style="height: 40px; width: auto;" />
+                </div>
                 <div class="payment-details">
                     <p><strong>bKash number:</strong> 01784638636</p>
                     <p><strong>Amount:</strong> 99 tk</p>
